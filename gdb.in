@@ -1,8 +1,10 @@
+echo start shell script\n
+set logging on
 file main.elf
 target remote :3333
 set $osp = $sp
 set $sp = $sp - 16
-b main.c:4
+b main.c:5
 c
 call RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_AFIO, ENABLE)
 call RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE)
@@ -24,8 +26,7 @@ call USART_Init(USART2, $osp)
 call USART_Cmd(USART2, ENABLE)
 c
 call USART_SendData(USART2, 'H')
-call USART_SendData(USART2, 'e')
-call USART_SendData(USART2, 'l')
-call USART_SendData(USART2, 'l')
-call USART_SendData(USART2, 'o')
-call USART_SendData(USART2, '!')
+call USART_SendData(USART2, '\n')
+call USART_SendData(USART2, 'H')
+
+
