@@ -25,8 +25,12 @@ set ((USART_InitTypeDef*)$osp)->USART_Mode = USART_Mode_Rx | USART_Mode_Tx
 call USART_Init(USART2, $osp)
 call USART_Cmd(USART2, ENABLE)
 c
-call USART_SendData(USART2, 'H')
-call USART_SendData(USART2, '\n')
-call USART_SendData(USART2, 'H')
+echo start checking word\n
 
+set $check_str = myString
+while(*myString)
+	call USART_SendData(USART2, *myString)
+	set myString = myString + 1
+end
+quit
 
