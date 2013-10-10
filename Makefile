@@ -44,7 +44,7 @@ gdbauto: main.bin
 		-gdb tcp::3333 -S \
 		-serial file:serial.out\
 		-kernel main.bin -monitor null &
-	$(CROSS_COMPILE)gdb -x   gdb.in && ./testPy.py
+	$(CROSS_COMPILE)gdb -x gdb.in
 
 emu: main.bin
 	bash emulate.sh main.bin
